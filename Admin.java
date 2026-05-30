@@ -1,4 +1,7 @@
-public class Admin {
+
+
+
+public class User {
 
     protected int    id;
     protected String nama;
