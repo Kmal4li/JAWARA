@@ -1,6 +1,3 @@
-package jawara;
-
-
 public class User {
 
     
