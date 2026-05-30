@@ -1,7 +1,4 @@
-package jawara;
-
-
-public class User {
+public class Admin {
 
     protected int    id;
     protected String nama;
