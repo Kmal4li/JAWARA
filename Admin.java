@@ -1,53 +1,35 @@
 
+public class Admin extends User {
 
-
-public class User {
-
-    protected int    id;
-    protected String nama;
-    protected String password;
-    protected String role;
-
-    public User() {}
-
-    public User(int id, String nama, String password, String role) {
-        this.id       = id;
-        this.nama     = nama;
-        this.password = password;
-        this.role     = role;
-    }
-    public boolean login(String inputPassword) {
-        if (this.password != null && this.password.equals(inputPassword)) {
-            System.out.println("[LOGIN]  Berhasil — " + nama + " (" + role + ") masuk ke sistem.");
-            return true;
-        }
-        System.out.println("[LOGIN]  Gagal — password salah untuk pengguna: " + nama);
-        return false;
+    public Admin() {
+        super();
+        this.role = "Admin";
     }
 
-    public void logout() {
-        System.out.println("[LOGOUT] " + nama + " (" + role + ") keluar dari sistem.");
+    public Admin(int id, String nama, String password) {
+        super(id, nama, password, "Admin");
     }
 
+    public void kelolaProduk() {
+        System.out.println("[ADMIN] " + nama + " mengakses manajemen produk.");
+        System.out.println("  > Tersedia: tambahProduk | updateProduk | hapusProduk");
+    }
+
+    
+    public void kelolaPromo() {
+        System.out.println("[ADMIN] " + nama + " mengakses manajemen promo.");
+        System.out.println("  > Tersedia: tambahPromo | updatePromo | aktifkan | nonaktifkan");
+    }
+
+   
+    @Override
     public void kelolaVoucher() {
-        System.out.println("[VOUCHER] " + nama + " mengakses pengelolaan voucher.");
+        System.out.println("[ADMIN] " + nama + " mengakses manajemen voucher.");
+        System.out.println("  > Tersedia: tambahVoucher | hapusVoucher | nonaktifkanVoucher");
     }
 
-    public int    getId()       { return id; }
-    public void   setId(int id) { this.id = id; }
-
-    public String getNama()           { return nama; }
-    public void   setNama(String nama){ this.nama = nama; }
-
-    public String getPassword()               { return password; }
-    public void   setPassword(String password){ this.password = password; }
-
-    public String getRole()            { return role; }
-    public void   setRole(String role) { this.role = role; }
-
-  
     @Override
     public String toString() {
-        return "User{id=" + id + ", nama='" + nama + "', role='" + role + "'}";
+        return "Admin{id=" + id + ", nama='" + nama + "', role='" + role + "'}";
     }
 }
