@@ -1,4 +1,4 @@
-package app.gui;
+package app.view.admin;
 
 import app.model.MetodePembayaran;
 

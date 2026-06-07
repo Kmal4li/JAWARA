@@ -1,5 +1,4 @@
-package app.gui;
-
+package app.view.admin;
 import app.model.Voucher;
 
 import javax.swing.*;
