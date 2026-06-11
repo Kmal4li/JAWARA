@@ -27,4 +27,8 @@ public class TransaksiService {
         // Simpan ke database (Repository akan menghandle pengecekan stok otomatis melalui query)
         transaksiRepository.simpanTransaksi(transaksi);
     }
+
+    public java.util.List<Transaksi> getAllTransaksi() {
+        return transaksiRepository.findAllWithKasirName();
+    }
 }

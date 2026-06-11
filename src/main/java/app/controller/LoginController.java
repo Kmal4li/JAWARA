@@ -37,9 +37,13 @@ public class LoginController {
                 app.controller.KasirController kc = new app.controller.KasirController(kv, ps, ts, user);
                 kc.start();
             } else {
-                // Untuk admin nanti akan dibuatkan AdminView
-                view.showMessage("Dashboard Admin belum tersedia pada fase ini.");
-                System.exit(0);
+                app.service.ProdukService ps = new app.service.ProdukService();
+                app.service.CategoryService cs = new app.service.CategoryService();
+                app.service.UserService us = new app.service.UserService();
+                app.service.TransaksiService ts = new app.service.TransaksiService();
+                app.view.admin.AdminDashboardView adv = new app.view.admin.AdminDashboardView(user.getNama());
+                app.controller.AdminController ac = new app.controller.AdminController(adv, ps, cs, us, ts, user);
+                ac.start();
             }
             
         } catch (Exception e) {

@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransaksiRepository {
 
@@ -78,5 +80,32 @@ public class TransaksiRepository {
                 conn.setAutoCommit(true); // Kembalikan state default
             }
         }
+    }
+
+    public List<Transaksi> findAllWithKasirName() {
+        List<Transaksi> list = new ArrayList<>();
+        String sql = "SELECT t.*, u.nama AS kasir_nama FROM transactions t JOIN users u ON t.kasir_id = u.id ORDER BY t.tanggal DESC";
+        try (Connection conn = DatabaseConfig.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                Transaksi t = new Transaksi();
+                t.setId(rs.getInt("id"));
+                t.setKasirId(rs.getInt("kasir_id"));
+                t.setKasirNama(rs.getString("kasir_nama"));
+                t.setTanggal(rs.getTimestamp("tanggal"));
+                t.setTotalHarga(rs.getDouble("total_harga"));
+                t.setDiskon(rs.getDouble("diskon"));
+                t.setTotalBayar(rs.getDouble("total_bayar"));
+                t.setKembalian(rs.getDouble("kembalian"));
+                t.setPaymentMethod(rs.getString("payment_method"));
+                t.setStatus(rs.getString("status"));
+                list.add(t);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
