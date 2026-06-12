@@ -40,4 +40,8 @@ public class Transaksi {
     public void setStatus(String status) { this.status = status; }
     public List<ItemCart> getItems() { return items; }
     public void setItems(List<ItemCart> items) { this.items = items; }
+
+    private String kasirNama;
+    public String getKasirNama() { return kasirNama; }
+    public void setKasirNama(String kasirNama) { this.kasirNama = kasirNama; }
 }

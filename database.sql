@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(100) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    PASSWORD VARCHAR(255) NOT NULL,
     role ENUM('Admin', 'Kasir') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 -- Insert dummy data
-INSERT IGNORE INTO users (nama, username, password, role) VALUES 
+INSERT IGNORE INTO users (nama, username, PASSWORD, role) VALUES 
 ('Admin Utama', 'admin', 'admin123', 'Admin'),
 ('Kasir 1', 'kasir1', 'kasir123', 'Kasir');
 
