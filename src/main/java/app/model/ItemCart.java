@@ -1,5 +1,10 @@
 package app.model;
 
+/**
+ * Class ItemCart sesuai class diagram.
+ * Atribut: kuantitas, hargaSatuan, subTotal
+ * Method: hitungSubTotal(), tambahKuantitas(), kurangKuantitas()
+ */
 public class ItemCart {
     private Produk produk;
     private int qty;
@@ -13,6 +18,13 @@ public class ItemCart {
         this.subtotal = this.hargaSatuan * qty;
     }
 
+    // Sesuai class diagram: <<create>> ItemCart(kuantitas, hargaSatuan, subTotal)
+    public ItemCart(int kuantitas, int hargaSatuan, int subTotal) {
+        this.qty = kuantitas;
+        this.hargaSatuan = hargaSatuan;
+        this.subtotal = subTotal;
+    }
+
     public Produk getProduk() { return produk; }
     public void setProduk(Produk produk) { this.produk = produk; calculateSubtotal(); }
     public int getQty() { return qty; }
@@ -24,4 +36,22 @@ public class ItemCart {
     private void calculateSubtotal() {
         this.subtotal = this.hargaSatuan * this.qty;
     }
+
+    // Method sesuai class diagram
+    public int hitungSubTotal() {
+        return (int) (this.hargaSatuan * this.qty);
+    }
+
+    public void tambahKuantitas(int jumlah) {
+        this.qty += jumlah;
+        calculateSubtotal();
+    }
+
+    public void kurangKuantitas(int jumlah) {
+        if (this.qty - jumlah >= 0) {
+            this.qty -= jumlah;
+            calculateSubtotal();
+        }
+    }
 }
+
