@@ -1,6 +1,8 @@
 package app.model;
 
-public class MetodePembayaran {
+import app.model.interfaces.IMetodePembayaran;
+
+public class MetodePembayaran implements IMetodePembayaran {
     private String metodePembayaran;
     private boolean status;
 

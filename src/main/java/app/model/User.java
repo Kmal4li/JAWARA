@@ -1,6 +1,8 @@
 package app.model;
 
-public class User {
+import app.model.interfaces.IUser;
+
+public class User implements IUser {
     protected int id;
     protected String nama;
     protected String username;
@@ -29,8 +31,20 @@ public class User {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
+    // Implementasi IUser
+    @Override
+    public boolean login(String username, String password) {
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
+    @Override
+    public void logout() {
+        System.out.println("User " + nama + " telah logout.");
+    }
+
     @Override
     public String toString() {
         return "User{id=" + id + ", nama='" + nama + "', username='" + username + "', role='" + role + "'}";
     }
 }
+

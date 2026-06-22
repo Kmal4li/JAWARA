@@ -1,10 +1,12 @@
 package app.model;
 
+import app.model.interfaces.ILaporan;
+
 /**
  * Class LaporanStock sesuai class diagram.
  * Atribut: stokMasuk, stokKeluar
  */
-public class LaporanStock {
+public class LaporanStock implements ILaporan {
     private int stokMasuk;
     private int stokKeluar;
 

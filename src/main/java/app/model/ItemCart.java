@@ -1,11 +1,13 @@
 package app.model;
 
+import app.model.interfaces.IItemCart;
+
 /**
  * Class ItemCart sesuai class diagram.
  * Atribut: kuantitas, hargaSatuan, subTotal
  * Method: hitungSubTotal(), tambahKuantitas(), kurangKuantitas()
  */
-public class ItemCart {
+public class ItemCart implements IItemCart {
     private Produk produk;
     private int qty;
     private double hargaSatuan;
@@ -52,6 +54,17 @@ public class ItemCart {
             this.qty -= jumlah;
             calculateSubtotal();
         }
+    }
+
+    // Alias methods untuk kompatibilitas dengan ItemCartGUI
+    public int getKuantitas() { return qty; }
+
+    public void tambahKuantitas() {
+        tambahKuantitas(1);
+    }
+
+    public void kurangiKuantitas(int jumlah) {
+        kurangKuantitas(jumlah);
     }
 }
 

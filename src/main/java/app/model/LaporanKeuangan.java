@@ -1,12 +1,13 @@
 package app.model;
 
+import app.model.interfaces.ILaporan;
 import java.util.List;
 
 /**
  * Class LaporanKeuangan sesuai class diagram.
  * Atribut: totalPendapatan, totalTransaksi, tanggalCetak
  */
-public class LaporanKeuangan {
+public class LaporanKeuangan implements ILaporan {
     private int totalPendapatan;
     private int totalTransaksi;
     private String tanggalCetak;

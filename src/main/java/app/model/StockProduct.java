@@ -1,10 +1,12 @@
 package app.model;
 
+import app.model.interfaces.IStockProduct;
+
 /**
  * Class StockProduct sesuai class diagram.
  * Atribut: jumlahStok
  */
-public class StockProduct {
+public class StockProduct implements IStockProduct {
     private int jumlahStok;
 
     public StockProduct() {}

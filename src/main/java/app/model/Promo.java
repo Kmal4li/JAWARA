@@ -1,10 +1,12 @@
 package app.model;
 
+import app.model.interfaces.IDiskon;
+
 /**
  * Class Promo sesuai class diagram.
  * Atribut: namaPromo, tipePromo, nilaiDiskon, tanggalMulai, tanggalAkhir, status
  */
-public class Promo {
+public class Promo implements IDiskon {
     private String namaPromo;
     private String tipePromo;
     private int nilaiDiskon;
@@ -70,6 +72,12 @@ public class Promo {
     public int applyPromoToDiskon(int totalBelanja) {
         int diskon = hitungJumlahDiskon(totalBelanja);
         return totalBelanja - diskon;
+    }
+
+    // Implementasi IDiskon
+    @Override
+    public int hitungDiskon(int totalBelanja) {
+        return hitungJumlahDiskon(totalBelanja);
     }
 
     @Override

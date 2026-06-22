@@ -1,6 +1,8 @@
 package app.model;
 
-public class Voucher {
+import app.model.interfaces.IDiskon;
+
+public class Voucher implements IDiskon {
     private int idVoucher;
     private String kodeVoucher;
     private String tipePromo;
