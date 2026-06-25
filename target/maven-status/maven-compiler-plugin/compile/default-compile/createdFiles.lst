@@ -1,0 +1,10 @@
+app\model\interfaces\ITransaksi.class
+app\model\interfaces\IMetodePembayaran.class
+app\model\interfaces\IStockProduct.class
+app\model\interfaces\IItemCart.class
+app\model\interfaces\IAdmin.class
+app\model\interfaces\ILaporan.class
+app\model\interfaces\IUser.class
+app\model\interfaces\IDiskon.class
+app\model\interfaces\IKasir.class
+app\model\interfaces\IProduk.class

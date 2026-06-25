@@ -27,13 +27,36 @@ public class ItemCart implements IItemCart {
         this.subtotal = subTotal;
     }
 
-    public Produk getProduk() { return produk; }
-    public void setProduk(Produk produk) { this.produk = produk; calculateSubtotal(); }
-    public int getQty() { return qty; }
-    public void setQty(int qty) { this.qty = qty; calculateSubtotal(); }
-    public double getHargaSatuan() { return hargaSatuan; }
-    public void setHargaSatuan(double hargaSatuan) { this.hargaSatuan = hargaSatuan; calculateSubtotal(); }
-    public double getSubtotal() { return subtotal; }
+    public Produk getProduk() {
+        return produk;
+    }
+
+    public void setProduk(Produk produk) {
+        this.produk = produk;
+        calculateSubtotal();
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+        calculateSubtotal();
+    }
+
+    public double getHargaSatuan() {
+        return hargaSatuan;
+    }
+
+    public void setHargaSatuan(double hargaSatuan) {
+        this.hargaSatuan = hargaSatuan;
+        calculateSubtotal();
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
 
     private void calculateSubtotal() {
         this.subtotal = this.hargaSatuan * this.qty;
@@ -57,7 +80,9 @@ public class ItemCart implements IItemCart {
     }
 
     // Alias methods untuk kompatibilitas dengan ItemCartGUI
-    public int getKuantitas() { return qty; }
+    public int getKuantitas() {
+        return qty;
+    }
 
     public void tambahKuantitas() {
         tambahKuantitas(1);
@@ -67,4 +92,3 @@ public class ItemCart implements IItemCart {
         kurangKuantitas(jumlah);
     }
 }
-
