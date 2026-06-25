@@ -1,5 +1,7 @@
 package app.view.admin;
 import app.model.Voucher;
+import app.repository.VoucherRepository;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -38,6 +40,7 @@ public class VoucherGUI extends JFrame {
 
     // ── Data ──────────────────────────────────────────────────────────────────
     private List<Voucher> daftarVoucher = new ArrayList<>();
+    private VoucherRepository voucherRepository = new VoucherRepository();
     private int idCounter = 1;
     private int selectedRow = -1;
 
@@ -57,7 +60,7 @@ public class VoucherGUI extends JFrame {
         setBackground(WARNA_BG);
 
         initKomponen();
-        muatDataContoh();
+        muatDataDariDB();
         refreshTabel();
     }
 
@@ -262,17 +265,22 @@ public class VoucherGUI extends JFrame {
         if (!validasiForm()) return;
 
         Voucher v = new Voucher(
-                idCounter++,
+                0, // ID will be auto-generated
                 txtKodeVoucher.getText().trim(),
                 (String) cmbTipePromo.getSelectedItem(),
                 Integer.parseInt(txtNilaiDiskon.getText().trim()),
                 txtTanggalKadaluarsa.getText().trim(),
                 chkStatus.isSelected()
         );
-        daftarVoucher.add(v);
-        refreshTabel();
-        bersihkanForm();
-        tampilkanPesan("Voucher berhasil ditambahkan!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            voucherRepository.insert(v);
+            muatDataDariDB();
+            bersihkanForm();
+            tampilkanPesan("Voucher berhasil ditambahkan!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            tampilkanPesan("Gagal menambah voucher ke database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void updateVoucher() {
@@ -289,9 +297,15 @@ public class VoucherGUI extends JFrame {
         v.setTanggalKadaluarsa(txtTanggalKadaluarsa.getText().trim());
         v.setStatus(chkStatus.isSelected());
 
-        refreshTabel();
-        bersihkanForm();
-        tampilkanPesan("Voucher berhasil diupdate!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            voucherRepository.update(v);
+            muatDataDariDB();
+            bersihkanForm();
+            tampilkanPesan("Voucher berhasil diupdate!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            tampilkanPesan("Gagal update voucher di database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void hapusVoucher() {
@@ -303,9 +317,15 @@ public class VoucherGUI extends JFrame {
                 "Yakin ingin menghapus voucher ini?", "Konfirmasi Hapus",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (konfirmasi == JOptionPane.YES_OPTION) {
-            daftarVoucher.remove(selectedRow);
-            refreshTabel();
-            bersihkanForm();
+            Voucher v = daftarVoucher.get(selectedRow);
+            try {
+                voucherRepository.delete(v.getIdVoucher());
+                muatDataDariDB();
+                bersihkanForm();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                tampilkanPesan("Gagal menghapus voucher dari database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -400,10 +420,9 @@ public class VoucherGUI extends JFrame {
         JOptionPane.showMessageDialog(this, pesan, judul, tipe);
     }
 
-    private void muatDataContoh() {
-        daftarVoucher.add(new Voucher(idCounter++, "HEMAT10", "persen",   10, "2025-12-31", true));
-        daftarVoucher.add(new Voucher(idCounter++, "DISKON5K","nominal", 5000,"2025-06-30", true));
-        daftarVoucher.add(new Voucher(idCounter++, "EXPIRED", "persen",   20, "2024-01-01", false));
+    private void muatDataDariDB() {
+        daftarVoucher = voucherRepository.findAll();
+        refreshTabel();
     }
 
     private JTextField buatTextField(boolean editable) {

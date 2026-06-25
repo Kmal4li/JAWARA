@@ -1,6 +1,8 @@
 package app.view.admin;
 
 import app.model.MetodePembayaran;
+import app.repository.MetodePembayaranRepository;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -39,6 +41,7 @@ public class MetodePembayaranGUI extends JFrame {
 
     // ── Data ───────────────────────────────────────────────────────────────
     private List<MetodePembayaran> daftarMetode = new ArrayList<>();
+    private MetodePembayaranRepository metodeRepository = new MetodePembayaranRepository();
     private int selectedRow = -1;
 
     // ── Tema warna ─────────────────────────────────────────────────────────
@@ -56,7 +59,7 @@ public class MetodePembayaranGUI extends JFrame {
         setLocationRelativeTo(null);
 
         initKomponen();
-        muatDataContoh();
+        muatDataDariDB();
         refreshTabel();
     }
 
@@ -255,10 +258,17 @@ public class MetodePembayaranGUI extends JFrame {
             tampilkanPesan("Nama metode tidak boleh kosong!", "Validasi", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        daftarMetode.add(new MetodePembayaran(nama, chkStatus.isSelected()));
-        refreshTabel();
-        bersihkanForm();
-        tampilkanPesan("Metode pembayaran berhasil ditambahkan!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        
+        MetodePembayaran m = new MetodePembayaran(nama, chkStatus.isSelected());
+        try {
+            metodeRepository.insert(m);
+            muatDataDariDB();
+            bersihkanForm();
+            tampilkanPesan("Metode pembayaran berhasil ditambahkan!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            tampilkanPesan("Gagal menambah metode ke database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void updateMetode() {
@@ -272,11 +282,19 @@ public class MetodePembayaranGUI extends JFrame {
             return;
         }
         MetodePembayaran m = daftarMetode.get(selectedRow);
+        String oldName = m.getMetode();
         m.setMetodeMetodePembayaran(nama);
         m.setStatus(chkStatus.isSelected());
-        refreshTabel();
-        bersihkanForm();
-        tampilkanPesan("Metode berhasil diupdate!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        
+        try {
+            metodeRepository.update(oldName, m);
+            muatDataDariDB();
+            bersihkanForm();
+            tampilkanPesan("Metode berhasil diupdate!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            tampilkanPesan("Gagal update metode di database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void hapusMetode() {
@@ -288,9 +306,15 @@ public class MetodePembayaranGUI extends JFrame {
                 "Yakin ingin menghapus metode ini?", "Konfirmasi Hapus",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (konfirmasi == JOptionPane.YES_OPTION) {
-            daftarMetode.remove(selectedRow);
-            refreshTabel();
-            bersihkanForm();
+            MetodePembayaran m = daftarMetode.get(selectedRow);
+            try {
+                metodeRepository.delete(m.getMetode());
+                muatDataDariDB();
+                bersihkanForm();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                tampilkanPesan("Gagal menghapus metode dari database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -350,11 +374,9 @@ public class MetodePembayaranGUI extends JFrame {
         tabel.clearSelection();
     }
 
-    private void muatDataContoh() {
-        daftarMetode.add(new MetodePembayaran("Tunai",        true));
-        daftarMetode.add(new MetodePembayaran("Transfer Bank", true));
-        daftarMetode.add(new MetodePembayaran("QRIS",          true));
-        daftarMetode.add(new MetodePembayaran("Kartu Debit",   false));
+    private void muatDataDariDB() {
+        daftarMetode = metodeRepository.findAll();
+        refreshTabel();
     }
 
     private void tampilkanPesan(String pesan, String judul, int tipe) {
