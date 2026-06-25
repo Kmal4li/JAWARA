@@ -1,29 +1,42 @@
 package app.view.admin;
 
-import app.model.MetodePembayaran;
-import app.repository.MetodePembayaranRepository;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GUI untuk mengelola Metode Pembayaran.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. TAMBAH METODE  → Isi nama metode → pilih status → klik "Tambah"
- * 2. EDIT METODE    → Klik baris di tabel → data otomatis terisi → ubah → klik "Update"
- * 3. HAPUS METODE   → Klik baris di tabel → klik "Hapus"
- * 4. PROSES BAYAR   → Masukkan total + pilih metode → klik "Proses Pembayaran"
- * 5. BERSIHKAN FORM → Klik "Batal"
- * ─────────────────────────────────────────────
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.MetodePembayaran;
+import app.repository.MetodePembayaranRepository;
+
+
 public class MetodePembayaranGUI extends JFrame {
 
     // ── Form fields ────────────────────────────────────────────────────────

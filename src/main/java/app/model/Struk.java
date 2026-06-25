@@ -16,14 +16,21 @@ public class Struk {
         this.kembalian = kembalian;
     }
 
-    // Getters & Setters
-    public String getTanggal() { return tanggal; }
-    public void setTanggal(String tanggal) { this.tanggal = tanggal; }
+    public String getTanggal() { 
+        return tanggal; 
+    }
+    public void setTanggal(String tanggal) { 
+        this.tanggal = tanggal; 
+    }
 
-    public int getKembalian() { return kembalian; }
-    public void setKembalian(int kembalian) { this.kembalian = kembalian; }
+    public int getKembalian() { 
+        return kembalian; 
+    }
+    public void setKembalian(int kembalian) { 
+        this.kembalian = kembalian; 
+    }
 
-    // Method sesuai class diagram
+    
     public void cetakStruk() {
         System.out.println("================================");
         System.out.println("         JAWARA POS");

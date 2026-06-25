@@ -1,32 +1,40 @@
 package app.view.admin;
 
-import app.model.Promo;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GUI untuk mengelola Promo sesuai class diagram.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. TAMBAH PROMO  → Isi semua kolom → klik "Tambah"
- * 2. EDIT PROMO    → Klik baris di tabel → ubah data → klik "Update"
- * 3. HAPUS PROMO   → Klik baris di tabel → klik "Hapus"
- * 4. CEK DISKON    → Masukkan total belanja → klik "Cek Diskon"
- * 5. BERSIHKAN     → Klik "Batal"
- * ─────────────────────────────────────────────
- *
- * Atribut class diagram: namaPromo, tipePromo, nilaiDiskon,
- *                        tanggalMulai, tanggalAkhir, status
- * Method: isValid(), setStatusBerlangsung(String), hitungJumlahDiskon(int),
- *         applyPromoToDiskon(int), getStatus(), setStatus(boolean)
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.Promo;
+
+
 public class PromoGUI extends JFrame {
 
     // ── Form fields ──────────────────────────────────────────────────────────

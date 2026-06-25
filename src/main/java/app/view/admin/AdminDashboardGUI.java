@@ -1,19 +1,27 @@
 package app.view.admin;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-/**
- * Dashboard utama Admin sesuai class diagram.
- * Navigasi ke semua fitur admin:
- * - kelolaProduk()
- * - kelolaVoucher()
- * - kelolaPromo()
- * - lihat_laporanKeuangan()
- * + Kelola Metode Pembayaran, Kategori Produk, Stok, Laporan Stok
- */
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+
+
 public class AdminDashboardGUI extends JFrame {
 
     // ── Tema warna ─────────────────────────────────────────────────────────

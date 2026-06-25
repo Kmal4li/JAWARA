@@ -2,11 +2,7 @@ package app.model;
 
 import app.model.interfaces.IItemCart;
 
-/**
- * Class ItemCart sesuai class diagram.
- * Atribut: kuantitas, hargaSatuan, subTotal
- * Method: hitungSubTotal(), tambahKuantitas(), kurangKuantitas()
- */
+
 public class ItemCart implements IItemCart {
     private Produk produk;
     private int qty;

@@ -13,16 +13,27 @@ public class CategoryProduct {
         this.deskripsi = deskripsi;
     }
 
-    // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getNamaKategori() { return namaKategori; }
-    public void setNamaKategori(String namaKategori) { this.namaKategori = namaKategori; }
-    public String getDeskripsi() { return deskripsi; }
-    public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi; }
+    public int getId() { 
+        return id; 
+    }
+    public void setId(int id) { 
+        this.id = id; 
+    }
+    public String getNamaKategori() { 
+        return namaKategori; 
+    }
+    public void setNamaKategori(String namaKategori) {
+        this.namaKategori = namaKategori; 
+    }
+    public String getDeskripsi() {
+         return deskripsi; 
+        }
+    public void setDeskripsi(String deskripsi) { 
+        this.deskripsi = deskripsi; 
+    }
 
     @Override
     public String toString() {
-        return namaKategori; // Useful for ComboBox
+        return namaKategori; 
     }
 }

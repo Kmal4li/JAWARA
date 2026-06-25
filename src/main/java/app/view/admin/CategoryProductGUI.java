@@ -1,30 +1,36 @@
 package app.view.admin;
 
-import app.model.CategoryProduct;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GUI untuk mengelola Kategori Produk sesuai class diagram.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. TAMBAH KATEGORI → Isi semua kolom → klik "Tambah"
- * 2. EDIT KATEGORI   → Klik baris di tabel → ubah data → klik "Update"
- * 3. HAPUS KATEGORI  → Klik baris di tabel → klik "Hapus"
- * 4. BERSIHKAN FORM  → Klik "Batal"
- * ─────────────────────────────────────────────
- *
- * Atribut class diagram: idKategori, namaKategori, deskripsi
- * Method: getIdKategori(), setIdKategori(), getNamaKategori(), setNamaKategori(),
- *         getDeskripsi(), setDeskripsi(), tambahKategori(), updateKategori(), hapusKategori()
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.CategoryProduct;
+
+
 public class CategoryProductGUI extends JFrame {
 
     // ── Form fields ──────────────────────────────────────────────────────────

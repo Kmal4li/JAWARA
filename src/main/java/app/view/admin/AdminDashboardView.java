@@ -1,32 +1,62 @@
 package app.view.admin;
 
-import app.controller.AdminController;
-import app.model.CategoryProduct;
-import app.model.Produk;
-import app.model.User;
-import app.model.Transaksi;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.List;
+
+import app.controller.AdminController;
+import app.model.CategoryProduct;
+import app.model.Produk;
+import app.model.Transaksi;
+import app.model.User;
 
 public class AdminDashboardView extends JFrame {
     private AdminController controller;
 
-    // Theme Colors
-    private static final Color COLOR_PRIMARY = new Color(79, 70, 229); // Indigo
-    private static final Color COLOR_SECONDARY = new Color(124, 58, 237); // Purple
-    private static final Color COLOR_BG = new Color(248, 250, 252); // Slate light bg
-    private static final Color COLOR_SIDEBAR = new Color(15, 23, 42); // Slate dark sidebar
+   
+    private static final Color COLOR_PRIMARY = new Color(79, 70, 229); 
+    private static final Color COLOR_SECONDARY = new Color(124, 58, 237); 
+    private static final Color COLOR_BG = new Color(248, 250, 252); 
+    private static final Color COLOR_SIDEBAR = new Color(15, 23, 42); 
     private static final Color COLOR_TEXT_DARK = new Color(15, 23, 42);
     private static final Color COLOR_TEXT_LIGHT = Color.WHITE;
-    private static final Color COLOR_SUCCESS = new Color(16, 185, 129); // Emerald
-    private static final Color COLOR_DANGER = new Color(239, 68, 68); // Red
-    private static final Color COLOR_WARNING = new Color(245, 158, 11); // Amber
+    private static final Color COLOR_SUCCESS = new Color(16, 185, 129); 
+    private static final Color COLOR_DANGER = new Color(239, 68, 68); 
+    private static final Color COLOR_WARNING = new Color(245, 158, 11); 
     private static final Color COLOR_BORDER = new Color(226, 232, 240);
 
     // Sidebar navigation buttons

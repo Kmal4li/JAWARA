@@ -1,28 +1,41 @@
 package app.view.admin;
-import app.model.Voucher;
-import app.repository.VoucherRepository;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GUI untuk mengelola Voucher.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. TAMBAH VOUCHER  → Isi semua kolom di panel kiri → klik tombol "Tambah"
- * 2. EDIT VOUCHER    → Klik baris di tabel → data otomatis terisi → ubah → klik "Update"
- * 3. HAPUS VOUCHER   → Klik baris di tabel → klik "Hapus"
- * 4. CEK DISKON      → Masukkan kode voucher + total belanja → klik "Cek Diskon"
- * 5. BERSIHKAN FORM  → Klik "Batal" untuk mengosongkan semua kolom
- * ─────────────────────────────────────────────
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.Voucher;
+import app.repository.VoucherRepository;
+
+
 public class VoucherGUI extends JFrame {
 
     // ── Form fields ──────────────────────────────────────────────────────────

@@ -1,53 +1,65 @@
 package app.view.kasir;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 import app.model.ItemCart;
 import app.model.Produk;
 import app.model.Voucher;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * GUI Keranjang Belanja (ItemCart) untuk Kasir.
- *
- * CARA PENGGUNAAN:
- * ──────────────────────────────────────────────────────
- * 1. TAMBAH PRODUK  → Pilih produk dari dropdown → klik "➕ Tambah ke Keranjang"
- * 2. TAMBAH QTY     → Klik baris di keranjang → klik "▲ Tambah"
- * 3. KURANGI QTY    → Klik baris di keranjang → klik "▼ Kurangi"
- * 4. HAPUS ITEM     → Klik baris di keranjang → klik "🗑 Hapus Item"
- * 5. PAKAI VOUCHER  → Ketik kode voucher → klik "Terapkan"
- * 6. BAYAR          → Pilih metode bayar → klik "💳 Proses Pembayaran"
- * 7. BATAL SEMUA    → Klik "🗑 Kosongkan Keranjang"
- * ──────────────────────────────────────────────────────
- */
 public class ItemCartGUI extends JFrame {
 
-    // ── Komponen utama ───────────────────────────────────────────────────────
+    
     private JComboBox<Produk>  cmbProduk;
     private JSpinner           spnQty;
     private JTable             tabelKeranjang;
     private DefaultTableModel  modelTabel;
 
-    // ── Voucher & pembayaran ─────────────────────────────────────────────────
+    
     private JTextField         txtKodeVoucher;
     private JLabel             lblDiskon, lblTotal, lblSubtotal;
     private JComboBox<String>  cmbMetodeBayar;
     private JLabel             lblStatusBayar;
 
-    // ── Data ─────────────────────────────────────────────────────────────────
     private List<ItemCart>  keranjang     = new ArrayList<>();
     private List<Produk>    daftarProduk  = new ArrayList<>();
     private List<Voucher>   daftarVoucher = new ArrayList<>();
     private int             diskonAktif   = 0;
     private int             selectedRow   = -1;
 
-    // ── Tema warna ───────────────────────────────────────────────────────────
     private static final Color BIRU      = new Color(41,  128, 185);
     private static final Color HIJAU     = new Color(39,  174,  96);
     private static final Color MERAH     = new Color(192,  57,  43);
@@ -69,9 +81,7 @@ public class ItemCartGUI extends JFrame {
         refreshRingkasan();
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // INISIALISASI
-    // ─────────────────────────────────────────────────────────────────────────
+   
     private void initKomponen() {
         JPanel root = new JPanel(new BorderLayout(10, 10));
         root.setBackground(BG);
@@ -84,7 +94,7 @@ public class ItemCartGUI extends JFrame {
         add(root);
     }
 
-    // ── HEADER ────────────────────────────────────────────────────────────────
+ 
     private JPanel buatHeader() {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(HEADER_BG);
@@ -103,7 +113,7 @@ public class ItemCartGUI extends JFrame {
         return p;
     }
 
-    // ── PANEL TENGAH (kiri: pilih produk + tabel | kanan: ringkasan) ──────────
+   
     private JPanel buatPanelTengah() {
         JPanel p = new JPanel(new BorderLayout(10, 0));
         p.setBackground(BG);
@@ -112,12 +122,12 @@ public class ItemCartGUI extends JFrame {
         return p;
     }
 
-    // ── PANEL KIRI ────────────────────────────────────────────────────────────
+   
     private JPanel buatPanelKiri() {
         JPanel p = new JPanel(new BorderLayout(0, 8));
         p.setBackground(BG);
 
-        // ── Baris pilih produk ──
+       
         JPanel barisPilih = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         barisPilih.setBackground(PUTIH);
         barisPilih.setBorder(BorderFactory.createCompoundBorder(
@@ -156,7 +166,7 @@ public class ItemCartGUI extends JFrame {
         barisPilih.add(spnQty);
         barisPilih.add(btnTambah);
 
-        // ── Tabel keranjang ──
+       
         String[] kolom = {"#", "Nama Produk", "Harga Satuan", "Qty", "Subtotal"};
         modelTabel = new DefaultTableModel(kolom, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -171,7 +181,7 @@ public class ItemCartGUI extends JFrame {
         tabelKeranjang.setGridColor(new Color(230, 230, 230));
         tabelKeranjang.setShowVerticalLines(false);
 
-        // Lebar kolom
+       
         int[] lebar = {35, 260, 120, 60, 130};
         for (int i = 0; i < lebar.length; i++)
             tabelKeranjang.getColumnModel().getColumn(i).setPreferredWidth(lebar[i]);
@@ -182,7 +192,7 @@ public class ItemCartGUI extends JFrame {
             }
         });
 
-        // ── Tombol aksi baris ──
+       
         JPanel tombolBaris = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 4));
         tombolBaris.setBackground(BG);
 
@@ -211,13 +221,13 @@ public class ItemCartGUI extends JFrame {
         return p;
     }
 
-    // ── PANEL KANAN (ringkasan + voucher + bayar) ─────────────────────────────
+  
     private JPanel buatPanelKanan() {
         JPanel p = new JPanel(new BorderLayout(0, 10));
         p.setBackground(BG);
         p.setPreferredSize(new Dimension(260, 0));
 
-        // ── Kartu ringkasan harga ──
+        
         JPanel kartuHarga = new JPanel(new GridBagLayout());
         kartuHarga.setBackground(PUTIH);
         kartuHarga.setBorder(BorderFactory.createCompoundBorder(
@@ -247,7 +257,6 @@ public class ItemCartGUI extends JFrame {
             kartuHarga.add(nilaiLabel[i], g);
         }
 
-        // ── Kartu voucher ──
         JPanel kartuVoucher = new JPanel(new GridBagLayout());
         kartuVoucher.setBackground(PUTIH);
         kartuVoucher.setBorder(BorderFactory.createCompoundBorder(
@@ -281,7 +290,7 @@ public class ItemCartGUI extends JFrame {
         gv.gridx = 1;
         kartuVoucher.add(btnHapusVou, gv);
 
-        // ── Kartu metode bayar ──
+   
         JPanel kartuBayar = new JPanel(new GridBagLayout());
         kartuBayar.setBackground(PUTIH);
         kartuBayar.setBorder(BorderFactory.createCompoundBorder(
@@ -325,7 +334,7 @@ public class ItemCartGUI extends JFrame {
         return p;
     }
 
-    // ── PANEL BAWAH (kosongkan) ────────────────────────────────────────────────
+    
     private JPanel buatPanelBawah() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 4));
         p.setBackground(BG);
@@ -337,16 +346,14 @@ public class ItemCartGUI extends JFrame {
         return p;
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // LOGIKA AKSI
-    // ─────────────────────────────────────────────────────────────────────────
+   
     private void tambahKeKeranjang() {
         Produk p = (Produk) cmbProduk.getSelectedItem();
         if (p == null) return;
 
         int qty = (int) spnQty.getValue();
 
-        // Cek stok
+        
         if (qty > p.getStok()) {
             JOptionPane.showMessageDialog(this,
                 "Stok tidak cukup! Stok tersedia: " + p.getStok(),
@@ -354,7 +361,7 @@ public class ItemCartGUI extends JFrame {
             return;
         }
 
-        // Cek kalau produk sudah ada di keranjang → tambah qty saja
+      
         for (ItemCart item : keranjang) {
             if (item.getProduk().getId() == p.getId()) {
                 item.tambahKuantitas();
@@ -484,9 +491,6 @@ public class ItemCartGUI extends JFrame {
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // HELPER REFRESH
-    // ─────────────────────────────────────────────────────────────────────────
     private void refreshTabel() {
         modelTabel.setRowCount(0);
         int no = 1;
@@ -516,9 +520,7 @@ public class ItemCartGUI extends JFrame {
         return keranjang.stream().mapToInt(ItemCart::hitungSubTotal).sum();
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // DATA CONTOH
-    // ─────────────────────────────────────────────────────────────────────────
+  
     private void muatDataContoh() {
         daftarProduk.add(new Produk(1, "Kopi Hitam",    5000, 12000, 50, "PRD001", 1));
         daftarProduk.add(new Produk(2, "Es Teh Manis",  3000,  8000, 80, "PRD002", 1));
@@ -530,9 +532,7 @@ public class ItemCartGUI extends JFrame {
         daftarVoucher.add(new Voucher(2, "DISKON5K", "nominal", 5000,"2025-06-30", true));
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // FACTORY METHODS
-    // ─────────────────────────────────────────────────────────────────────────
+   
     private JLabel buatLabelHarga(String teks) {
         JLabel l = new JLabel(teks, SwingConstants.RIGHT);
         l.setFont(new Font("Segoe UI", Font.PLAIN, 13));

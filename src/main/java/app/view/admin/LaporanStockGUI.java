@@ -1,29 +1,32 @@
 package app.view.admin;
 
-import app.model.LaporanStock;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * GUI untuk Laporan Stok sesuai class diagram.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. Klik "Generate Laporan" untuk memperbarui laporan stok
- * 2. Lihat ringkasan stok masuk & keluar di panel atas
- * 3. Lihat detail per produk di tabel
- * ─────────────────────────────────────────────
- *
- * Atribut class diagram: stokMasuk, stokKeluar
- * Method: getStokMasuk(), getStokKeluar(), generateLaporan()
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.LaporanStock;
+
+
 public class LaporanStockGUI extends JFrame {
 
     // ── Display fields ────────────────────────────────────────────────────────

@@ -2,10 +2,7 @@ package app.model;
 
 import app.model.interfaces.IKasir;
 
-/**
- * Class Kasir extends User sesuai class diagram.
- * Method: prosesTransaksi(), cetakStruk()
- */
+
 public class Kasir extends User implements IKasir {
     public Kasir() {
         super();

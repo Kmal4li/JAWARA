@@ -2,10 +2,7 @@ package app.model;
 
 import app.model.interfaces.IAdmin;
 
-/**
- * Class Admin extends User sesuai class diagram.
- * Method: kelolaProduk(), kelolaVoucher(), kelolaPromo(), lihat_laporanKeuangan()
- */
+
 public class Admin extends User implements IAdmin {
     public Admin() {
         super();

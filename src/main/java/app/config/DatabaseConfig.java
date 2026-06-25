@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DatabaseConfig {
     private static final String URL = "jdbc:mysql://localhost:3306/jawara_db";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // Adjust as needed
+    private static final String PASSWORD = ""; 
     
     private static Connection connection = null;
 

@@ -1,8 +1,9 @@
 package app.service;
 
+import java.util.List;
+
 import app.model.User;
 import app.repository.UserRepository;
-import java.util.List;
 
 public class UserService {
     private UserRepository userRepository;
@@ -26,7 +27,6 @@ public class UserService {
     public void updateUser(User user) throws Exception {
         validateUser(user);
         
-        // Cek username unik jika diubah
         User existing = userRepository.findByUsername(user.getUsername());
         if (existing != null && existing.getId() != user.getId()) {
             throw new Exception("Username already exists");

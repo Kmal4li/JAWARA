@@ -1,31 +1,34 @@
 package app.view.admin;
 
-import app.model.LaporanKeuangan;
-import app.model.Transaksi;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * GUI untuk Laporan Keuangan sesuai class diagram.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. Klik "Generate Laporan" untuk menghitung total pendapatan dan total transaksi
- * 2. Lihat ringkasan di panel atas
- * 3. Lihat detail transaksi di tabel
- * ─────────────────────────────────────────────
- *
- * Atribut class diagram: totalPendapatan, totalTransaksi, tanggalCetak
- * Method: hitungTotalPendapatan(List<Transaksi>), hitungTotalTransaksi(List<Transaksi>),
- *         generateLaporan()
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.LaporanKeuangan;
+import app.model.Transaksi;
+
+
 public class LaporanKeuanganGUI extends JFrame {
 
     // ── Display fields ────────────────────────────────────────────────────────

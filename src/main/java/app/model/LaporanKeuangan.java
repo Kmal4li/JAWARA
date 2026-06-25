@@ -1,7 +1,8 @@
 package app.model;
 
-import app.model.interfaces.ILaporan;
 import java.util.List;
+
+import app.model.interfaces.ILaporan;
 
 /**
  * Class LaporanKeuangan sesuai class diagram.
@@ -20,17 +21,27 @@ public class LaporanKeuangan implements ILaporan {
         this.tanggalCetak = tanggalCetak;
     }
 
-    // Getters & Setters
-    public int getTotalPendapatan() { return totalPendapatan; }
-    public void setTotalPendapatan(int totalPendapatan) { this.totalPendapatan = totalPendapatan; }
+    public int getTotalPendapatan() { 
+        return totalPendapatan;
+     }
+    public void setTotalPendapatan(int totalPendapatan) {
+         this.totalPendapatan = totalPendapatan; 
+        }
 
-    public int getTotalTransaksi() { return totalTransaksi; }
-    public void setTotalTransaksi(int totalTransaksi) { this.totalTransaksi = totalTransaksi; }
+    public int getTotalTransaksi() { 
+        return totalTransaksi;
+     }
+    public void setTotalTransaksi(int totalTransaksi) {
+         this.totalTransaksi = totalTransaksi; 
+        }
 
-    public String getTanggalCetak() { return tanggalCetak; }
-    public void setTanggalCetak(String tanggalCetak) { this.tanggalCetak = tanggalCetak; }
+    public String getTanggalCetak() {
+         return tanggalCetak;
+         }
+    public void setTanggalCetak(String tanggalCetak) { 
+        this.tanggalCetak = tanggalCetak; 
+    }
 
-    // Method sesuai class diagram
     public int hitungTotalPendapatan(List<Transaksi> transaksi) {
         int total = 0;
         for (Transaksi t : transaksi) {

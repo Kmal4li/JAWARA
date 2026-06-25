@@ -14,7 +14,7 @@ public class MetodePembayaran implements IMetodePembayaran {
         this.status = status;
     }
 
-    // Getters & Setters
+
     public String getMetode() {
         return metodePembayaran;
     }

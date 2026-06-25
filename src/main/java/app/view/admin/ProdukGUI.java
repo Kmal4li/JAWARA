@@ -1,31 +1,35 @@
 package app.view.admin;
 
-import app.model.Produk;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GUI untuk mengelola Produk sesuai class diagram.
- *
- * CARA PENGGUNAAN:
- * ─────────────────────────────────────────────
- * 1. TAMBAH PRODUK  → Isi semua kolom → klik "Tambah"
- * 2. EDIT PRODUK    → Klik baris di tabel → ubah data → klik "Update"
- * 3. HAPUS PRODUK   → Klik baris di tabel → klik "Hapus"
- * 4. BERSIHKAN FORM → Klik "Batal"
- * ─────────────────────────────────────────────
- *
- * Atribut class diagram: idProduk, namaProduk, hargaBeli, hargaJual
- * Method: tambahProduk(), updateProduk(), hapusProduk(), getIdProduk(),
- *         setIdProduk(), getNamaProduk(), setNamaProduk(), getHargaJual(),
- *         setHargaJual(), getHargaBeli(), setHargaBeli()
- */
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import app.model.Produk;
+
 public class ProdukGUI extends JFrame {
 
     // ── Form fields ──────────────────────────────────────────────────────────

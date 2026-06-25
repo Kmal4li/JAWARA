@@ -22,24 +22,47 @@ public class Voucher implements IDiskon {
         this.status = status;
     }
 
-    // Getters & Setters
-    public int getIdVoucher() { return idVoucher; }
-    public void setIdVoucher(int idVoucher) { this.idVoucher = idVoucher; }
+    public int getIdVoucher() { 
+        return idVoucher;
+     }
+    public void setIdVoucher(int idVoucher) { 
+        this.idVoucher = idVoucher; 
+    }
 
-    public String getKodeVoucher() { return kodeVoucher; }
-    public void setKodeVoucher(String kodeVoucher) { this.kodeVoucher = kodeVoucher; }
+    public String getKodeVoucher() { 
+        return kodeVoucher; 
+    }
+    public void setKodeVoucher(String kodeVoucher) { 
+        this.kodeVoucher = kodeVoucher; 
+    }
 
-    public String getTipePromo() { return tipePromo; }
-    public void setTipePromo(String tipePromo) { this.tipePromo = tipePromo; }
+    public String getTipePromo() { 
+        return tipePromo; 
+    }
+    public void setTipePromo(String tipePromo) { 
+        this.tipePromo = tipePromo; 
+    }
 
-    public int getNilaiDiskon() { return nilaiDiskon; }
-    public void setNilaiDiskon(int nilaiDiskon) { this.nilaiDiskon = nilaiDiskon; }
+    public int getNilaiDiskon() { 
+        return nilaiDiskon; 
+    }
+    public void setNilaiDiskon(int nilaiDiskon) { 
+        this.nilaiDiskon = nilaiDiskon; 
+    }
 
-    public String getTanggalKadaluarsa() { return tanggalKadaluarsa; }
-    public void setTanggalKadaluarsa(String tanggalKadaluarsa) { this.tanggalKadaluarsa = tanggalKadaluarsa; }
+    public String getTanggalKadaluarsa() { 
+        return tanggalKadaluarsa; 
+    }
+    public void setTanggalKadaluarsa(String tanggalKadaluarsa) { 
+        this.tanggalKadaluarsa = tanggalKadaluarsa; 
+    }
 
-    public boolean getStatus() { return status; }
-    public void setStatus(boolean status) { this.status = status; }
+    public boolean getStatus() { 
+        return status;
+     }
+    public void setStatus(boolean status) {
+         this.status = status; 
+        }
 
     public boolean isValid() {
         return status;
